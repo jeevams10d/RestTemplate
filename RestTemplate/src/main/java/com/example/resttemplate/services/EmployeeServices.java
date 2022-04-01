@@ -1,11 +1,13 @@
 package com.example.resttemplate.services;
 
-import com.example.resttemplate.model.EmployeeEntity;
-import com.example.resttemplate.repository.EmployeeRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.resttemplate.model.EmployeeEntity;
+import com.example.resttemplate.repository.EmployeeRepository;
 
 @Service
 public class EmployeeServices {
@@ -22,8 +24,17 @@ public class EmployeeServices {
     }
 
 
-    public EmployeeEntity updateEmployee(int empId, EmployeeEntity employeeEntity) {
-
+    public String updateEmployee(int empId, EmployeeEntity employeeEntity) {
+    	Optional<EmployeeEntity>opEmp=employeeRepository.findById(empId);
+        if(opEmp.isPresent())
+        {
+            employeeRepository.save(employeeEntity);
+            return "update succesfully";
+        }
+        else
+        {
+            return "id not found";
+        }
     }
 
     public void deleteEmployee(int empId) {

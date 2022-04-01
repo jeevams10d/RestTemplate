@@ -24,7 +24,7 @@ public class EmployeeController {
 	}
 
 	@PutMapping("/updateEmployee/empId")
-	public  EmployeeEntity updateEmployee(@PathVariable int empId,@RequestBody EmployeeEntity employeeEntity){
+	public  String updateEmployee(@PathVariable int empId,@RequestBody EmployeeEntity employeeEntity){
 		return employeeServices.updateEmployee(empId,employeeEntity);
 	}
 
